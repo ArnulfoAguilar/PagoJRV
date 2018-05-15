@@ -1,0 +1,53 @@
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\bin\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\bin\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\bin\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\bin\Release\system.data.oracleclient.dll
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.ingreso.resources
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.menuprin.resources
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.Resources.resources
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.personal.resources
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.usuarios.resources
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.vbproj.GenerateResource.Cache
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\proyectopagos\planilla\planilla\obj\x86\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\bin\Release\system.data.oracleclient.dll
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.ingreso.resources
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.menuprin.resources
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.Resources.resources
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.personal.resources
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.usuarios.resources
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.vbproj.GenerateResource.Cache
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Desktop\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.vbprojResolveAssemblyReference.cache
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\bin\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\bin\Release\system.data.oracleclient.dll
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.ingreso.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.menuprin.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.Resources.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.personal.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.usuarios.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.vbproj.GenerateResource.Cache
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla\planilla\obj\x86\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\bin\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\bin\Release\planilla.pdb
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\bin\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\bin\Release\system.data.oracleclient.dll
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.ingreso.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.menuprin.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.Resources.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.personal.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.s.resources
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.vbproj.GenerateResource.Cache
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.exe
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.xml
+C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Release\planilla.pdb
