@@ -5,7 +5,7 @@ Imports planilla.Usuario
 Public Class ingreso
     ' Dim cadena As String = "Data Source=172.16.100.41:1521/cnpre; User id=PAGOSJRV; password=Arkantos14" '"Data Source=localhost:1521/orcl; User id=PAGOSJRV; password=Arkantos14"
     'Dim cadena As String = "Data Source=192.168.4.101:1521/REGELEC.tse.gob.sv; User id=PAGOSJRV_2018; password=Arkantos14"
-    Dim cadena As String = "Data Source=localhost:1521/orcl; User id=PAGOSJRV; password=Arkantos14"
+    Dim cadena As String = "Data Source=localhost:1521/orcl; User id=PAGOJRV; password=PAGOJRV"
     Dim con As New OracleConnection(cadena)
 
     Private Sub nusuario_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

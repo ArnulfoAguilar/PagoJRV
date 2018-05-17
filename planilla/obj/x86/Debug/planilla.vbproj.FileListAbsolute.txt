@@ -29,3 +29,6 @@ C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes camb
 C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Debug\planilla.xml
 C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Debug\planilla.pdb
 C:\Users\TSE SISTEMAS\Documents\PAGOOS\proyectopagos\planilla - copia antes cambiar framework\planilla\obj\x86\Debug\planilla.vbprojResolveAssemblyReference.cache
+C:\Users\TSE\Documents\GitHub\PagoJRV\planilla\obj\x86\Debug\planilla.exe
+C:\Users\TSE\Documents\GitHub\PagoJRV\planilla\obj\x86\Debug\planilla.xml
+C:\Users\TSE\Documents\GitHub\PagoJRV\planilla\obj\x86\Debug\planilla.pdb

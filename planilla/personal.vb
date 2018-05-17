@@ -8,10 +8,12 @@ Imports System.IO
 
 Public Class personal
 
-
+    '****************************** CONEXION A BASE DE DATOS************************************
     ' Dim cadena As String = "Data Source=172.16.100.41:1521/cnpre; User id=PAGOSJRV; password=Arkantos14" '"Data Source=localhost:1521/orcl; User id=PAGOSJRV; password=Arkantos14" 
-    Dim cadena As String = "Data Source=localhost:1521/orcl; User id=PAGOSJRV; password=Arkantos14"
+    Dim cadena As String = "Data Source=localhost:1521/orcl; User id=PAGOJRV; password=PAGOJRV"
     'Dim cadena As String = "Data Source=192.168.4.101:1521/REGELEC.tse.gob.sv; User id=PAGOSJRV_2018; password=Arkantos14"
+    ´*******************************************************************************************
+
     Dim con As New OracleConnection(cadena)
     Dim duiproc As String
     Dim duipadron As String
@@ -101,60 +103,14 @@ Public Class personal
         dtusuario.Columns.Add("JRV")
         dtusuario.Columns.Add("Cargo")
         dtusuario.Columns.Add("Procedencia")
-
-
-
-
-        '***********************************************************************************
-        '************** METODO PARA CARGAR LA IMAGEN AL CARGAR EL FORMULARIO****************
-        '***********************************************************************************
-        '******************************************************************************************
-        '****************************** METODO PARA CARGAR LA SIGUIENTE IMAGEN ********************
-        '******************************************************************************************
-        ' Se evalua al cargar el formulario cuales actas ya fueron digitadas por el mismo usuario para evitar repeticiones 09/03/18
-        'Falta reiniciar la secuencia en base al estado 0 o 1 del estado de la imagen
-        'Dim buscarRepetido As String = "select * from PERSONAL ORDER BY JRV ASC"
-        'Dim comandoRepetido As New OracleCommand(buscarRepetido, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-        'Dim repetido As Integer = nextval
-        'Dim norepetida As Integer = 1
-        'con.Open()
-        'Dim lector As OracleDataReader = Nothing
-
-        'lector = comandoRepetido.ExecuteReader
-        'If lector.HasRows Then
-        '    While lector.Read()
-        '        norepetida = Convert.ToInt32(lector(5).ToString)
-        '        If norepetida >= repetido Then
-        '            If Convert.ToInt32(lector(7).ToString) <> codUsuario Then
-        '                Exit While
-        '            End If
-        '        End If
-        '    End While
-        'End If
-        'con.Close()
-        'If nextval <> norepetida Then
-        '    Do Until nextval = norepetida
-        '        siguiente_acta() ' Primero se pide el valor de la siguiente
-        '        txtjrv.Text = nextval
-        '        mostrar_asamblea()
-        '    Loop
-        'End If
-
-
-        'siguiente_acta() ' Primero se pide el valor de la siguiente
-        'txtjrv.Text = nextval
-        'mostrarAlcaldes()
-        '***********************************************************************************
-
-        'btnsalir.Text = "SALIR"
         cargar_combobox_procedencia()
         txtjrv.Focus()
-        
+
     End Sub
     Private Sub cargar_combobox_procedencia()
         Try
             con.Close()
-            Dim SQL As String = "select * from origen"
+            Dim SQL As String = "select * from partido_politico order by 1"
             Dim comando As New OracleCommand(SQL, con)
             Dim lector As OracleDataReader = Nothing
             con.Open()
@@ -163,8 +119,8 @@ Public Class personal
                 Dim da As New OracleDataAdapter(comando)
                 Dim ds As New DataSet
                 da.Fill(ds)
-                cbProcedencia.DisplayMember = "PROCEDENCIA"
-                cbProcedencia.ValueMember = "ID_PROCEDE"
+                cbProcedencia.DisplayMember = "PARTIDO"
+                cbProcedencia.ValueMember = "ID_PARTIDO"
                 cbProcedencia.DataSource = ds.Tables(0)
                 con.Close()
             End If
@@ -175,10 +131,10 @@ Public Class personal
     End Sub
 
     Private Sub btnbuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnbuscar.Click
-        con.Close() ' SE DEBE DE HABILITAR EL BOTON INGRESAR Y EL INGRESAR SE DEBE DE DEHABILITAR CUANDO TERMINE SU ´ROPIA RUTINA
+        con.Close() ' SE DEBE DE HABILITAR EL BOTON INGRESAR Y EL INGRESAR SE DEBE DE DEHABILITAR CUANDO TERMINE SU PROPIA RUTINA
         Try
 
-            Dim buscar As String = "select * from padronel where DUI = :dui"
+            Dim buscar As String = "select * from padron where DUI = :dui"
             Dim comando As New OracleCommand(buscar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
             comando.Parameters.Add("dui", txtdui.Text)
 
@@ -191,9 +147,7 @@ Public Class personal
                 If lector.Read() Then
                     duipadron = lector(0).ToString
                     txtnombre1.Text = lector(1).ToString()
-                    'txtnombre2.Text = lector(5).ToString()
                     txtape1.Text = lector(2).ToString()
-                    'txtape2.Text = lector(3).ToString()
                 End If
             Else
                 If MessageBox.Show("No se encontró esta persona en el padrón, ¿Desea digitar de nuevo?, de lo contrario se deberá ingresar manualmente.", "No encontrado", MessageBoxButtons.YesNo) = DialogResult.No Then
@@ -210,14 +164,11 @@ Public Class personal
             End If
             con.Close()
 
-            Dim duip As String = "select * from origen where ID_DUI = :dui" 'Saca el DUI de la tabla procedencia
+            Dim duip As String = "select * from partido_politico where ID_DUI = :dui" 'Saca el DUI de la tabla procedencia
             Dim comando1 As New OracleCommand(duip, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
             comando.Parameters.Add("dui", txtdui.Text)
-
-
             con.Open()
             Dim lector1 As OracleDataReader = Nothing
-
             lector1 = comando.ExecuteReader
             If lector1.HasRows Then
                 If lector1.Read() Then
@@ -231,7 +182,7 @@ Public Class personal
             con.Close()
         End Try
         btningresar.Enabled = True
-        'con.Close()
+        con.Close()
     End Sub
     Dim rondaprincipio As Integer
     Private Sub btningresar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btningresar.Click
@@ -261,322 +212,294 @@ Public Class personal
         End Try
         If rondaprincipio = 0 Then
             con.Close()
-            Dim consulta_personal As String = "select * from personal5 where DUI=:DUI"
-            Dim comandoPersonal As New OracleCommand(consulta_personal, con)
+            Dim consulta_personal As String = "select * from PRIMER_DIGITADA where DUI_DIGITADO1=:DUI"
+            Dim comandoPersonal As New OracleCommand(consulta_personal, con) ' Se hace esta consulta para comprobar que no se haya ingresado el mismo dui
             comandoPersonal.Parameters.Add(":DUI", txtdui.Text)
             Dim lector As OracleDataReader = Nothing
             con.Open()
             lector = comandoPersonal.ExecuteReader
             If lector.HasRows Then
-                MessageBox.Show("EL DUI: " & txtdui.Text & " YA ESTA EN LA BASE DE DATOS, PORFAVOR RELLENELO DE CEROS COMO INCONSISTENCIA")
+                MessageBox.Show("EL DUI: " & txtdui.Text & " YA ESTA EN LA BASE DE DATOS, PORFAVOR SELECCIONE LA INCONSISTENCIA ADECUADA")
                 txtdui.Enabled = True
                 txtdui.Text = ""
                 txtdui.Focus()
+                con.Close()
                 Exit Sub
                 con.Close()
             End If
             con.Close()
         Else
             con.Close()
-            Dim consulta_personal As String = "select * from personal6 where DUI=:DUI"
+            Dim consulta_personal As String = "select * from SEGUNDA_DIGITADA where DUI_DIGITADO=:DUI"
             Dim comandoPersonal As New OracleCommand(consulta_personal, con)
             comandoPersonal.Parameters.Add(":DUI", txtdui.Text)
             Dim lector As OracleDataReader = Nothing
             con.Open()
             lector = comandoPersonal.ExecuteReader
             If lector.HasRows Then
-                MessageBox.Show("EL DUI: " & txtdui.Text & " YA ESTA EN LA BASE DE DATOS, PORFAVOR RELLENELO DE CEROS COMO INCONSISTENCIA")
+                MessageBox.Show("EL DUI: " & txtdui.Text & " YA ESTA EN LA BASE DE DATOS, PORFAVOR SELECCIONE LA INCONSISTENCIA ADECUADA")
                 txtdui.Enabled = True
                 txtdui.Text = ""
                 txtdui.Focus()
                 btnbuscar.Enabled = False
+                con.Close()
                 Exit Sub
                 con.Close()
             End If
             con.Close()
         End If
-            '**************************************************************
 
+        Dim cargo As Boolean = False
+        Dim cargousuario As String
+        Dim duiprocedencia As String ' para guardar la letra asignada a cada partido
+        If cmbcargo.Text <> "" Then
 
-            'Dim sql As String = ("INSERT INTO personal (DUIDI, NOMBRE1, NOMBRE2, APELLIDO1, APELLIDO2, JRV, ID_CARGO, COD_USUARIO, ID_ESTADO, ID_IMAGEN, DUI, ID_PROCEDE) VALUES (:DUIDI, :NOMBRE1, :NOMBRE2, :APELLIDO1, :APELLIDO2, :JRV, :ID_CARGO, :COD_USUARIO, :ID_ESTADO, :ID_IMAGEN, :DUI, :ID_PROCEDE)")
-            'Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-            Dim cargo As Boolean = False
-            Dim cargousuario As String
-            Dim duiprocedencia As String ' para guardar la letra asignada a cada partido
-            If cmbcargo.Text <> "" Then
-
-                If cmbcargo.SelectedItem.ToString = "Vigilante" Then
-                    '*******************************************
-                    'If cbProcedencia.SelectedItem = Nothing Then
-                    '    MessageBox.Show("SELECCIONE LA PROCEDENCIA DE LA PERSONA")
-                    '    Exit Sub
-                    'Else
-
-                    '    '*******************************************
-                    '    Dim buscar As String = "select * from ORIGEN where ID_PROCEDE=:PARTIDO"
-                    '    Dim comandobusqueda As New OracleCommand(buscar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-                    '    comandobusqueda.Parameters.Add(":partido", cbProcedencia.SelectedValue.ToString)
-                    '    con.Open()
-                    '    Dim lector As OracleDataReader = Nothing
-
-                    '    lector = comandobusqueda.ExecuteReader
-                    '    If lector.HasRows Then
-                    '        If lector.Read() Then
-                    '            duiprocedencia = lector(0).ToString
-                    '        End If
-                    '    End If
-                    'If cbProcedencia.SelectedValue.ToString = "" Then
-                    'MessageBox.Show("SELECCIONE LA PROCEDENCIA DE LA PERSONA")
-                    'Exit Sub
-                    'Else
-
-                    duiprocedencia = cbProcedencia.SelectedValue.ToString
-                    cargo = True
-
-                    con.Close()
-
-                    If duiprocedencia <> "" Then
-                        For Each row As DataRow In dt.Rows
-                            If duiprocedencia = row(9).ToString Then
-                                MessageBox.Show("Ya existe una persona procedente del partido " & cbProcedencia.SelectedItem.ToString & ", por favor revisar los datos ingresados nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Exit Sub
-                            End If
-                        Next
-                    End If
-                    '*****************************************************************
-                    'If PARA COMPROBAR QUE EL EL COMBOBOX DE CARGO NO ESTE VACIO 
-                    'End If
-                    ' End If
-
-
-                End If
-
-
-                For Each row As DataRow In dt.Rows
-                    If txtdui.Text <> "00000000-0" Then
-                        If txtdui.Text = row(0).ToString And codUsuario = row(4).ToString Then
-                            MessageBox.Show("El DUI ingresado ya fue digitado anteriormente, íntente con otro documento.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            If cmbcargo.SelectedItem.ToString = "Vigilante" Then
+                duiprocedencia = cbProcedencia.SelectedValue.ToString
+                cargo = True
+                con.Close()
+                If duiprocedencia <> "" Then
+                    For Each row As DataRow In dt.Rows
+                        If duiprocedencia = row(9).ToString Then
+                            MessageBox.Show("Ya existe una persona procedente del partido " & cbProcedencia.SelectedItem.ToString & ", por favor revisar los datos ingresados nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             Exit Sub
                         End If
-                    End If
-                Next
-
-                Dim contarVocal = 0
-                For Each row As DataRow In dt.Rows
-
-                    Select Case cmbcargo.SelectedItem.ToString
-                        Case "Presidente"
-                            If Convert.ToInt32(row(5).ToString) = 1 Then
-                                MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Exit Sub
-                            End If
-                        Case "Secretario"
-                            If Convert.ToInt32(row(5).ToString) = 2 Then
-                                MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Exit Sub
-                            End If
-                        Case "Vocal1"
-                            If Convert.ToInt32(row(5).ToString) = 3 Then
-                                contarVocal += 1
-                                If contarVocal = 3 Then
-                                    MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                    Exit Sub
-                                End If
-                            End If
-                        Case "Vocal2"
-                            If Convert.ToInt32(row(5).ToString) = 3 Then
-                                contarVocal += 1
-                                If contarVocal = 3 Then
-                                    MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                    Exit Sub
-                                End If
-                            End If
-                        Case "Vocal3"
-                            If Convert.ToInt32(row(5).ToString) = 3 Then
-                                contarVocal += 1
-                                If contarVocal = 3 Then
-                                    MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                    Exit Sub
-                                End If
-                            End If
-                    End Select
-
-                Next
-
-                cargousuario = cmbcargo.SelectedItem.ToString 'Se carga en la variable el cargo seleccionado en el combobox para mostrarse en el datagrid
-
-                cbProcedencia.Enabled = True
-                eval = True
-
-
-
-                If txtnombre1.ReadOnly = True Then
-                    Try
-                        temporal(contador).Dui = txtdui.Text
-                        temporal(contador).Nombre1 = txtnombre1.Text
-                        'temporal(contador).Nombre2 = txtnombre2.Text
-                        temporal(contador).Apellido1 = txtape1.Text
-                        'temporal(contador).Apellido2 = txtape2.Text
-                        temporal(contador).Jrv = Convert.ToInt32(txtjrv.Text)
-                        Select Case cmbcargo.SelectedItem.ToString
-                            Case "Presidente"
-                                temporal(contador).Cargo = Convert.ToInt32(1)
-                            Case "Secretario"
-                                temporal(contador).Cargo = Convert.ToInt32(2)
-                            Case "Vocal1"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vocal2"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vocal3"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vigilante"
-                                temporal(contador).Cargo = Convert.ToInt32(4)
-                            Case Else
-                                temporal(contador).Cargo = Convert.ToInt32(1)
-                        End Select
-
-                        temporal(contador).CodigoUsuario = codUsuario
-                        temporal(contador).Estado = Convert.ToInt32(1)
-                        temporal(contador).Imagen = Convert.ToInt32(1)
-                        temporal(contador).DuiPadron = duipadron
-                        If cargo = True Then
-                            temporal(contador).Procedencia = duiprocedencia
-                        Else
-                            temporal(contador).Procedencia = ""
-                        End If
-
-
-                        'comando.ExecuteNonQuery()
-                        'Dim lector As OracleDataReader = Nothing
-                        con.Close()
-                        'lector = comando.ExecuteReader
-                        Dim jrvtexto = txtjrv.Text
-                        For Each control As Control In Me.Controls
-                            If TypeOf control Is TextBox Then
-                                If control.Text <> "" Then
-                                    control.Text = ""
-                                End If
-                            End If
-                        Next
-                        txtjrv.Text = jrvtexto
-                        cmbcargo.SelectedIndex = -1
-                        cbProcedencia.SelectedIndex = -1
-                        ' MessageBox.Show("Datos ingresados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message) ' Se imprime el error por si falla la conexion a la base
-                        con.Close()
-
-                    End Try
-                Else
-                    Try
-                        temporal(contador).Dui = txtdui.Text
-                        temporal(contador).Nombre1 = txtnombre1.Text
-                        'temporal(contador).Nombre2 = txtnombre2.Text
-                        temporal(contador).Apellido1 = txtape1.Text
-                        'temporal(contador).Apellido2 = txtape2.Text
-                        temporal(contador).Jrv = Convert.ToInt32(txtjrv.Text)
-                        Select Case cmbcargo.SelectedItem.ToString
-                            Case "Presidente"
-                                temporal(contador).Cargo = Convert.ToInt32(1)
-                            Case "Secretario"
-                                temporal(contador).Cargo = Convert.ToInt32(2)
-                            Case "Vocal1"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vocal2"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vocal3"
-                                temporal(contador).Cargo = Convert.ToInt32(3)
-                            Case "Vigilante"
-                                temporal(contador).Cargo = Convert.ToInt32(4)
-                            Case Else
-                                temporal(contador).Cargo = Convert.ToInt32(1)
-                        End Select
-
-                        temporal(contador).CodigoUsuario = codUsuario
-                        temporal(contador).Estado = Convert.ToInt32(3)
-                        temporal(contador).Imagen = Convert.ToInt32(1)
-                        temporal(contador).DuiPadron = duipadron
-                        If cargo = True Then
-                            temporal(contador).Procedencia = duiprocedencia
-                        Else
-                            temporal(contador).Procedencia = ""
-                        End If
-
-
-
-                        'comando.ExecuteNonQuery()
-                        'Dim lector As OracleDataReader = Nothing
-                        con.Close()
-                        'lector = comando.ExecuteReader
-                        Dim jrvtexto = txtjrv.Text
-                        For Each control As Control In Me.Controls
-                            If TypeOf control Is TextBox Then
-                                If control.Text <> "" Then
-                                    control.Text = ""
-                                End If
-                            End If
-
-                        Next
-                        txtjrv.Text = jrvtexto
-
-                        cmbcargo.SelectedIndex = -1
-                        cbProcedencia.SelectedIndex = -1
-
-                        '   MessageBox.Show("Datos ingresados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        txtnombre1.ReadOnly = True
-                        'txtnombre2.ReadOnly = True
-                        txtape1.ReadOnly = True
-                        'txtape2.ReadOnly = True
-
-
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message) ' Se imprime el error por si falla la conexion a la base
-                        con.Close()
-
-                    End Try
+                    Next
                 End If
-
-                Dim fila As DataRow = dt.NewRow()
-                fila("DUI") = temporal(contador).Dui
-                fila("Nombre1") = temporal(contador).Nombre1
-                'fila("Nombre2") = temporal(contador).Nombre2
-                fila("Apellido1") = temporal(contador).Apellido1
-                'fila("Apellido2") = temporal(contador).Apellido2
-                fila("JRV") = temporal(contador).Jrv
-                fila("Cod_Usuario") = temporal(contador).CodigoUsuario
-                fila("Cargo") = temporal(contador).Cargo
-                fila("Estado") = temporal(contador).Estado
-                fila("Imagen") = temporal(contador).Imagen
-                fila("DuiPadron") = temporal(contador).DuiPadron
-                fila("Procedencia") = temporal(contador).Procedencia
-                dt.Rows.Add(fila)
-
-                'dgvData.DataSource = dt
-                cargo = False
-                cbProcedencia.Enabled = False
-                txtdui.Focus()
-                eval = False
-                btningresar.Enabled = False
-
-                'Se mostrara en el datagrid solo la informacion que el digitador debe de ver
-                Dim filausuario As DataRow = dtusuario.NewRow()
-                filausuario("DUI") = temporal(contador).Dui
-                filausuario("Nombre1") = temporal(contador).Nombre1
-                filausuario("Apellido1") = temporal(contador).Apellido1
-                filausuario("JRV") = temporal(contador).Jrv
-                filausuario("Cargo") = cargousuario
-                filausuario("Procedencia") = temporal(contador).Procedencia
-                dtusuario.Rows.Add(filausuario)
-                dgvData.DataSource = dtusuario
-
-                contador += 1
-
                 '*****************************************************************
                 'If PARA COMPROBAR QUE EL EL COMBOBOX DE CARGO NO ESTE VACIO 
-            Else
-                MessageBox.Show("SELECCIONE EL CARGO DE LA PERSONA")
+                'End If
+                ' End If
+
+
             End If
+
+
+            For Each row As DataRow In dt.Rows
+                If txtdui.Text <> "00000000-0" Then
+                    If txtdui.Text = row(0).ToString And codUsuario = row(4).ToString Then
+                        MessageBox.Show("El DUI ingresado ya fue digitado anteriormente, íntente con otro documento.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                End If
+            Next
+
+            Dim contarVocal = 0
+            For Each row As DataRow In dt.Rows
+
+                Select Case cmbcargo.SelectedItem.ToString
+                    Case "Presidente"
+                        If Convert.ToInt32(row(5).ToString) = 1 Then
+                            MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                    Case "Secretario"
+                        If Convert.ToInt32(row(5).ToString) = 2 Then
+                            MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                    Case "Vocal1"
+                        If Convert.ToInt32(row(5).ToString) = 3 Then
+                            contarVocal += 1
+                            If contarVocal = 3 Then
+                                MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Exit Sub
+                            End If
+                        End If
+                    Case "Vocal2"
+                        If Convert.ToInt32(row(5).ToString) = 3 Then
+                            contarVocal += 1
+                            If contarVocal = 3 Then
+                                MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Exit Sub
+                            End If
+                        End If
+                    Case "Vocal3"
+                        If Convert.ToInt32(row(5).ToString) = 3 Then
+                            contarVocal += 1
+                            If contarVocal = 3 Then
+                                MessageBox.Show("Esta JRV ya tiene otra persona seleccionada como " & cmbcargo.SelectedItem.ToString & ", por favor seleccione el cargo correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Exit Sub
+                            End If
+                        End If
+                End Select
+
+            Next
+
+            cargousuario = cmbcargo.SelectedItem.ToString 'Se carga en la variable el cargo seleccionado en el combobox para mostrarse en el datagrid
+
+            cbProcedencia.Enabled = True
+            eval = True
+
+
+
+            If txtnombre1.ReadOnly = True Then
+                Try
+                    temporal(contador).Dui = txtdui.Text
+                    temporal(contador).Nombre1 = txtnombre1.Text
+                    'temporal(contador).Nombre2 = txtnombre2.Text
+                    temporal(contador).Apellido1 = txtape1.Text
+                    'temporal(contador).Apellido2 = txtape2.Text
+                    temporal(contador).Jrv = Convert.ToInt32(txtjrv.Text)
+                    Select Case cmbcargo.SelectedItem.ToString
+                        Case "Presidente"
+                            temporal(contador).Cargo = Convert.ToInt32(1)
+                        Case "Secretario"
+                            temporal(contador).Cargo = Convert.ToInt32(2)
+                        Case "Vocal1"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vocal2"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vocal3"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vigilante"
+                            temporal(contador).Cargo = Convert.ToInt32(4)
+                        Case Else
+                            temporal(contador).Cargo = Convert.ToInt32(1)
+                    End Select
+
+                    temporal(contador).CodigoUsuario = codUsuario
+                    temporal(contador).Estado = Convert.ToInt32(1)
+                    temporal(contador).Imagen = Convert.ToInt32(1)
+                    temporal(contador).DuiPadron = duipadron
+                    If cargo = True Then
+                        temporal(contador).Procedencia = duiprocedencia
+                    Else
+                        temporal(contador).Procedencia = ""
+                    End If
+
+
+                    'comando.ExecuteNonQuery()
+                    'Dim lector As OracleDataReader = Nothing
+                    con.Close()
+                    'lector = comando.ExecuteReader
+                    Dim jrvtexto = txtjrv.Text
+                    For Each control As Control In Me.Controls
+                        If TypeOf control Is TextBox Then
+                            If control.Text <> "" Then
+                                control.Text = ""
+                            End If
+                        End If
+                    Next
+                    txtjrv.Text = jrvtexto
+                    cmbcargo.SelectedIndex = -1
+                    cbProcedencia.SelectedIndex = -1
+                    ' MessageBox.Show("Datos ingresados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message) ' Se imprime el error por si falla la conexion a la base
+                    con.Close()
+
+                End Try
+            Else
+                Try
+                    temporal(contador).Dui = txtdui.Text
+                    temporal(contador).Nombre1 = txtnombre1.Text
+                    'temporal(contador).Nombre2 = txtnombre2.Text
+                    temporal(contador).Apellido1 = txtape1.Text
+                    'temporal(contador).Apellido2 = txtape2.Text
+                    temporal(contador).Jrv = Convert.ToInt32(txtjrv.Text)
+                    Select Case cmbcargo.SelectedItem.ToString
+                        Case "Presidente"
+                            temporal(contador).Cargo = Convert.ToInt32(1)
+                        Case "Secretario"
+                            temporal(contador).Cargo = Convert.ToInt32(2)
+                        Case "Vocal1"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vocal2"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vocal3"
+                            temporal(contador).Cargo = Convert.ToInt32(3)
+                        Case "Vigilante"
+                            temporal(contador).Cargo = Convert.ToInt32(4)
+                        Case Else
+                            temporal(contador).Cargo = Convert.ToInt32(1)
+                    End Select
+
+                    temporal(contador).CodigoUsuario = codUsuario
+                    temporal(contador).Estado = Convert.ToInt32(3)
+                    temporal(contador).Imagen = Convert.ToInt32(1)
+                    temporal(contador).DuiPadron = duipadron
+                    If cargo = True Then
+                        temporal(contador).Procedencia = duiprocedencia
+                    Else
+                        temporal(contador).Procedencia = ""
+                    End If
+
+
+
+                    'comando.ExecuteNonQuery()
+                    'Dim lector As OracleDataReader = Nothing
+                    con.Close()
+                    'lector = comando.ExecuteReader
+                    Dim jrvtexto = txtjrv.Text
+                    For Each control As Control In Me.Controls
+                        If TypeOf control Is TextBox Then
+                            If control.Text <> "" Then
+                                control.Text = ""
+                            End If
+                        End If
+
+                    Next
+                    txtjrv.Text = jrvtexto
+
+                    cmbcargo.SelectedIndex = -1
+                    cbProcedencia.SelectedIndex = -1
+
+                    '   MessageBox.Show("Datos ingresados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    txtnombre1.ReadOnly = True
+                    'txtnombre2.ReadOnly = True
+                    txtape1.ReadOnly = True
+                    'txtape2.ReadOnly = True
+
+
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message) ' Se imprime el error por si falla la conexion a la base
+                    con.Close()
+
+                End Try
+            End If
+
+            Dim fila As DataRow = dt.NewRow()
+            fila("DUI") = temporal(contador).Dui
+            fila("Nombre1") = temporal(contador).Nombre1
+            'fila("Nombre2") = temporal(contador).Nombre2
+            fila("Apellido1") = temporal(contador).Apellido1
+            'fila("Apellido2") = temporal(contador).Apellido2
+            fila("JRV") = temporal(contador).Jrv
+            fila("Cod_Usuario") = temporal(contador).CodigoUsuario
+            fila("Cargo") = temporal(contador).Cargo
+            fila("Estado") = temporal(contador).Estado
+            fila("Imagen") = temporal(contador).Imagen
+            fila("DuiPadron") = temporal(contador).DuiPadron
+            fila("Procedencia") = temporal(contador).Procedencia
+            dt.Rows.Add(fila)
+
+            'dgvData.DataSource = dt
+            cargo = False
+            cbProcedencia.Enabled = False
+            txtdui.Focus()
+            eval = False
+            btningresar.Enabled = False
+
+            'Se mostrara en el datagrid solo la informacion que el digitador debe de ver
+            Dim filausuario As DataRow = dtusuario.NewRow()
+            filausuario("DUI") = temporal(contador).Dui
+            filausuario("Nombre1") = temporal(contador).Nombre1
+            filausuario("Apellido1") = temporal(contador).Apellido1
+            filausuario("JRV") = temporal(contador).Jrv
+            filausuario("Cargo") = cargousuario
+            filausuario("Procedencia") = temporal(contador).Procedencia
+            dtusuario.Rows.Add(filausuario)
+            dgvData.DataSource = dtusuario
+
+            contador += 1
+
+            '*****************************************************************
+            'If PARA COMPROBAR QUE EL EL COMBOBOX DE CARGO NO ESTE VACIO 
+        Else
+            MessageBox.Show("SELECCIONE EL CARGO DE LA PERSONA")
+        End If
 
     End Sub
 
@@ -750,91 +673,91 @@ Public Class personal
             '******************************************************************************************
             ' End If
         Else
-        Dim sql As String = ("INSERT INTO personal6 (DUIDI, NOMBRE1, APELLIDO1, JRV, ID_CARGO, COD_USUARIO, ID_ESTADO, ID_IMAGEN, DUI, ID_PROCEDE) VALUES (:DUIDI, :NOMBRE1, :APELLIDO1, :JRV, :ID_CARGO, :COD_USUARIO, :ID_ESTADO, :ID_IMAGEN, :DUI, :ID_PROCEDE)")
-        'Dim sql As String = ("INSERT INTO personal (DUIDI, NOMBRE1, APELLIDO1, JRV, ID_CARGO, COD_USUARIO, ID_ESTADO, ID_IMAGEN, DUI, ID_PROCEDE) VALUES (:DUIDI, :NOMBRE1, :APELLIDO1, :JRV, :ID_CARGO, :COD_USUARIO, :ID_ESTADO, :ID_IMAGEN, :DUI, :ID_PROCEDE)")
-        Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-        Dim countInconsistencia As Integer = 1
+            Dim sql As String = ("INSERT INTO personal6 (DUIDI, NOMBRE1, APELLIDO1, JRV, ID_CARGO, COD_USUARIO, ID_ESTADO, ID_IMAGEN, DUI, ID_PROCEDE) VALUES (:DUIDI, :NOMBRE1, :APELLIDO1, :JRV, :ID_CARGO, :COD_USUARIO, :ID_ESTADO, :ID_IMAGEN, :DUI, :ID_PROCEDE)")
+            'Dim sql As String = ("INSERT INTO personal (DUIDI, NOMBRE1, APELLIDO1, JRV, ID_CARGO, COD_USUARIO, ID_ESTADO, ID_IMAGEN, DUI, ID_PROCEDE) VALUES (:DUIDI, :NOMBRE1, :APELLIDO1, :JRV, :ID_CARGO, :COD_USUARIO, :ID_ESTADO, :ID_IMAGEN, :DUI, :ID_PROCEDE)")
+            Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
+            Dim countInconsistencia As Integer = 1
 
-        Dim st As String
-        Dim stt As String
-        Try
-            con.Open()
-            For Each row As DataRow In dt.Rows
-                comando.Parameters.Clear()
-                If row(0).ToString = "00000000-0" Then
+            Dim st As String
+            Dim stt As String
+            Try
+                con.Open()
+                For Each row As DataRow In dt.Rows
+                    comando.Parameters.Clear()
+                    If row(0).ToString = "00000000-0" Then
                         Dim buscar As String = "select * from PERSONAL6 where ID_ESTADO = :estado"
-                    Dim comando1 As New OracleCommand(buscar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-                    comando1.Parameters.Add(":estado", 3)
+                        Dim comando1 As New OracleCommand(buscar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
+                        comando1.Parameters.Add(":estado", 3)
 
 
-                    Dim lector As OracleDataReader = Nothing
+                        Dim lector As OracleDataReader = Nothing
 
-                    lector = comando1.ExecuteReader
-                    If lector.HasRows Then
-                        While lector.Read()
-                            countInconsistencia += 1
-                        End While
+                        lector = comando1.ExecuteReader
+                        If lector.HasRows Then
+                            While lector.Read()
+                                countInconsistencia += 1
+                            End While
+                        End If
+
+                        Dim constructor As New StringBuilder
+                        Dim numero As Integer = countInconsistencia.ToString.Length
+                        constructor.Append("9")
+                        For i As Integer = 1 To (8 - numero)
+                            constructor.Append("0")
+                        Next
+                        constructor.Append(countInconsistencia.ToString)
+                        stt = constructor.ToString
+                        st = stt.Substring(0, 8) + "-" + stt.Substring(8)
+                        comando.Parameters.Add(":DUIDI", st)
+                    Else
+                        '*****************
+                        '***ARREGLO DE dui repetido
+                        'Dim sqldui As String = "select * from personal2 where duidi=:DUI"
+                        'Dim comandodui As New OracleCommand(sqldui, con)
+                        'comandodui.Parameters.Add(":DUI", row(1).ToString)
+                        'Dim lector As OracleDataReader = Nothing
+                        'lector = comandodui.ExecuteReader
+                        'If lector.HasRows Then
+                        '    MessageBox.Show("El DUI:" & row(0).ToString & " Ya existe en la base de datos, Marcar como inconsistencia")
+                        '    Exit Sub
+                        'Else
+                        '    comando.Parameters.Add(":DUIDI", row(0).ToString)
+                        'End If
+                        comando.Parameters.Add(":DUIDI", row(0).ToString)
                     End If
+                    comando.Parameters.Add(":NOMBRE1", row(1).ToString)
+                    comando.Parameters.Add(":APELLIDO1", row(2).ToString)
+                    comando.Parameters.Add(":JRV", Convert.ToInt32(row(3).ToString))
+                    comando.Parameters.Add(":COD_USUARIO", row(4).ToString)
+                    comando.Parameters.Add(":ID_CARGO", Convert.ToInt32(row(5).ToString))
+                    comando.Parameters.Add(":ID_ESTADO", Convert.ToInt32(row(6).ToString))
+                    comando.Parameters.Add(":ID_IMAGEN", Convert.ToInt32(row(7).ToString))
+                    comando.Parameters.Add(":DUI", row(8).ToString)
+                    comando.Parameters.Add(":ID_PROCEDE", row(9).ToString)
+                    comando.ExecuteNonQuery()
+                    countInconsistencia = 1
+                Next
+                'Array.Clear(temporal, 0, temporal.Length)
+                contador = 0
+                dt.Rows.Clear()
+                dtusuario.Rows.Clear()
+                dgvData.DataSource = dtusuario
+                txtdui.Focus()
+                con.Close()
 
-                    Dim constructor As New StringBuilder
-                    Dim numero As Integer = countInconsistencia.ToString.Length
-                    constructor.Append("9")
-                    For i As Integer = 1 To (8 - numero)
-                        constructor.Append("0")
-                    Next
-                    constructor.Append(countInconsistencia.ToString)
-                    stt = constructor.ToString
-                    st = stt.Substring(0, 8) + "-" + stt.Substring(8)
-                    comando.Parameters.Add(":DUIDI", st)
-                Else
-                    '*****************
-                    '***ARREGLO DE dui repetido
-                    'Dim sqldui As String = "select * from personal2 where duidi=:DUI"
-                    'Dim comandodui As New OracleCommand(sqldui, con)
-                    'comandodui.Parameters.Add(":DUI", row(1).ToString)
-                    'Dim lector As OracleDataReader = Nothing
-                    'lector = comandodui.ExecuteReader
-                    'If lector.HasRows Then
-                    '    MessageBox.Show("El DUI:" & row(0).ToString & " Ya existe en la base de datos, Marcar como inconsistencia")
-                    '    Exit Sub
-                    'Else
-                    '    comando.Parameters.Add(":DUIDI", row(0).ToString)
-                    'End If
-                    comando.Parameters.Add(":DUIDI", row(0).ToString)
-                End If
-                comando.Parameters.Add(":NOMBRE1", row(1).ToString)
-                comando.Parameters.Add(":APELLIDO1", row(2).ToString)
-                comando.Parameters.Add(":JRV", Convert.ToInt32(row(3).ToString))
-                comando.Parameters.Add(":COD_USUARIO", row(4).ToString)
-                comando.Parameters.Add(":ID_CARGO", Convert.ToInt32(row(5).ToString))
-                comando.Parameters.Add(":ID_ESTADO", Convert.ToInt32(row(6).ToString))
-                comando.Parameters.Add(":ID_IMAGEN", Convert.ToInt32(row(7).ToString))
-                comando.Parameters.Add(":DUI", row(8).ToString)
-                comando.Parameters.Add(":ID_PROCEDE", row(9).ToString)
-                comando.ExecuteNonQuery()
-                countInconsistencia = 1
-            Next
-            'Array.Clear(temporal, 0, temporal.Length)
-            contador = 0
-            dt.Rows.Clear()
-            dtusuario.Rows.Clear()
-            dgvData.DataSource = dtusuario
-            txtdui.Focus()
-            con.Close()
-
-            Dim actualizar As String = "UPDATE IMAGEN SET ESTADO = :estado where ID_IMAGEN = :imagen"
-            Dim comandoup As New OracleCommand(actualizar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-            con.Open()
-            comandoup.Parameters.Add(":estado", 2)
+                Dim actualizar As String = "UPDATE IMAGEN SET ESTADO = :estado where ID_IMAGEN = :imagen"
+                Dim comandoup As New OracleCommand(actualizar, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
+                con.Open()
+                comandoup.Parameters.Add(":estado", 2)
                 comandoup.Parameters.Add(":imagen", txtjrv.Text)
-            comandoup.ExecuteNonQuery()
-            con.Close()
-            MessageBox.Show("Datos guardados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-            con.Close()
-            Exit Sub
-        End Try
+                comandoup.ExecuteNonQuery()
+                con.Close()
+                MessageBox.Show("Datos guardados con éxito", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+                con.Close()
+                Exit Sub
+            End Try
 
 
 
@@ -1001,7 +924,7 @@ Public Class personal
                 End If
                 con.Close()
 
-                Dim duip As String = "select * from origen where ID_DUI = :dui" 'Saca el DUI de la tabla procedencia
+                Dim duip As String = "select * from partido_politico where ID_DUI = :dui" 'Saca el DUI de la tabla procedencia
                 Dim comando1 As New OracleCommand(duip, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
                 comando.Parameters.Add("dui", txtdui.Text)
 
@@ -1112,7 +1035,7 @@ Public Class personal
             lector = comando.ExecuteReader                                          'Si la consulta devuelve tuplas, quiere decir que aun faltan actas por digitar
             If lector.HasRows Then
                 con.Close()
-                
+
                 'Aqui Agregare la funcion para que mande la imagen siempre y cuando el estado sea menor que 3
                 Dim sqlmenor As String = "select imagendip from imagen where id_imagen=:ID and estado < 10"
                 Dim comandomenor As New OracleCommand(sqlmenor, con)
@@ -1122,7 +1045,7 @@ Public Class personal
                 lectormenor = comandomenor.ExecuteReader
                 If lectormenor.HasRows Then
                     con.Close()
-                    
+
                     Dim extraer As Byte() = ExtraerImagen(txtjrv.Text, "select imagendip from imagen where id_imagen=:ID")
                     Dim ms As New MemoryStream(extraer)
                     LOGO.Image = Image.FromStream(ms)
@@ -1206,7 +1129,7 @@ Public Class personal
                 lectormenor = comandomenor.ExecuteReader
                 If lectormenor.HasRows Then
                     con.Close()
-                    
+
                     Dim extraer As Byte() = ExtraerImagen(txtjrv.Text, "select imagenalc from imagen where id_imagen=:ID")
                     Dim ms As New MemoryStream(extraer)
                     LOGO.Image = Image.FromStream(ms)
