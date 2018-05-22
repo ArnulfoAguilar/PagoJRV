@@ -11,4 +11,6 @@
     Public Imagen As Integer
     Public DuiPadron As String
     Public Procedencia As String
+    Public tipo_inconsistencia As Integer
+
 End Class

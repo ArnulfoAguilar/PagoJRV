@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class personal
+Partial Class Primera_digitada
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,7 +22,7 @@ Partial Class personal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(personal))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Primera_digitada))
         Me.LBLTITULO = New System.Windows.Forms.Label()
         Me.txtdui = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -36,8 +36,6 @@ Partial Class personal
         Me.txtape1 = New System.Windows.Forms.TextBox()
         Me.txtjrv = New System.Windows.Forms.TextBox()
         Me.cmbcargo = New System.Windows.Forms.ComboBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.LOGO = New System.Windows.Forms.PictureBox()
         Me.btningresar = New System.Windows.Forms.Button()
         Me.cbProcedencia = New System.Windows.Forms.ComboBox()
@@ -53,9 +51,9 @@ Partial Class personal
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.btn_aceptar_jrv = New System.Windows.Forms.Button()
+        Me.cb_inconsistencias = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -137,6 +135,7 @@ Partial Class personal
         '
         Me.dgvData.AllowUserToAddRows = False
         Me.dgvData.AllowUserToDeleteRows = False
+        Me.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvData.Location = New System.Drawing.Point(12, 254)
         Me.dgvData.Name = "dgvData"
@@ -170,39 +169,20 @@ Partial Class personal
         '
         'txtjrv
         '
-        Me.txtjrv.Location = New System.Drawing.Point(583, 110)
+        Me.txtjrv.Location = New System.Drawing.Point(567, 108)
         Me.txtjrv.Name = "txtjrv"
         Me.txtjrv.Size = New System.Drawing.Size(51, 20)
         Me.txtjrv.TabIndex = 37
         '
         'cmbcargo
         '
+        Me.cmbcargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbcargo.FormattingEnabled = True
         Me.cmbcargo.Items.AddRange(New Object() {"Presidente", "Secretario", "Vocal1", "Vocal2", "Vocal3", "Vigilante"})
         Me.cmbcargo.Location = New System.Drawing.Point(434, 152)
         Me.cmbcargo.Name = "cmbcargo"
         Me.cmbcargo.Size = New System.Drawing.Size(121, 21)
         Me.cmbcargo.TabIndex = 38
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.planilla.My.Resources.Resources.ESCUDO
-        Me.PictureBox2.Location = New System.Drawing.Point(915, 9)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 86)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 39
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.planilla.My.Resources.Resources.LOGO_TSE
-        Me.PictureBox1.Location = New System.Drawing.Point(15, 6)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(146, 66)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 25
-        Me.PictureBox1.TabStop = False
         '
         'LOGO
         '
@@ -224,6 +204,7 @@ Partial Class personal
         '
         'cbProcedencia
         '
+        Me.cbProcedencia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbProcedencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbProcedencia.FormattingEnabled = True
         Me.cbProcedencia.Items.AddRange(New Object() {"ARENA", "FMLN", "GANA", "PCN", "PDC", "CD", "DS", "PSD", "PSP", "FPS"})
@@ -299,7 +280,7 @@ Partial Class personal
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(870, 533)
+        Me.Button7.Location = New System.Drawing.Point(882, 533)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(188, 40)
         Me.Button7.TabIndex = 53
@@ -310,7 +291,7 @@ Partial Class personal
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Modern No. 20", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(499, 107)
+        Me.Label5.Location = New System.Drawing.Point(472, 106)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(83, 21)
         Me.Label5.TabIndex = 54
@@ -320,7 +301,7 @@ Partial Class personal
         '
         Me.Button3.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(898, 109)
+        Me.Button3.Location = New System.Drawing.Point(864, 109)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(58, 60)
         Me.Button3.TabIndex = 56
@@ -330,7 +311,7 @@ Partial Class personal
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(1011, 107)
+        Me.Button4.Location = New System.Drawing.Point(996, 107)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(56, 62)
         Me.Button4.TabIndex = 57
@@ -338,18 +319,38 @@ Partial Class personal
         '
         'btn_aceptar_jrv
         '
-        Me.btn_aceptar_jrv.Location = New System.Drawing.Point(656, 108)
+        Me.btn_aceptar_jrv.Location = New System.Drawing.Point(624, 105)
         Me.btn_aceptar_jrv.Name = "btn_aceptar_jrv"
         Me.btn_aceptar_jrv.Size = New System.Drawing.Size(75, 23)
         Me.btn_aceptar_jrv.TabIndex = 58
         Me.btn_aceptar_jrv.Text = "Aceptar"
         Me.btn_aceptar_jrv.UseVisualStyleBackColor = True
         '
-        'personal
+        'cb_inconsistencias
+        '
+        Me.cb_inconsistencias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cb_inconsistencias.FormattingEnabled = True
+        Me.cb_inconsistencias.Location = New System.Drawing.Point(15, 219)
+        Me.cb_inconsistencias.Name = "cb_inconsistencias"
+        Me.cb_inconsistencias.Size = New System.Drawing.Size(156, 21)
+        Me.cb_inconsistencias.TabIndex = 59
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(9, 203)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(113, 13)
+        Me.Label6.TabIndex = 60
+        Me.Label6.Text = "Tipo de inconsistencia"
+        '
+        'Primera_digitada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1221, 624)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.cb_inconsistencias)
         Me.Controls.Add(Me.btn_aceptar_jrv)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -363,14 +364,12 @@ Partial Class personal
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.cbProcedencia)
         Me.Controls.Add(Me.btningresar)
-        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.cmbcargo)
         Me.Controls.Add(Me.txtjrv)
         Me.Controls.Add(Me.txtape1)
         Me.Controls.Add(Me.txtnombre1)
         Me.Controls.Add(Me.Lbl1)
         Me.Controls.Add(Me.dgvData)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnbuscar)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.Button2)
@@ -379,11 +378,9 @@ Partial Class personal
         Me.Controls.Add(Me.txtdui)
         Me.Controls.Add(Me.LBLTITULO)
         Me.Controls.Add(Me.Panel1)
-        Me.Name = "personal"
-        Me.Text = "                                                   "
+        Me.Name = "Primera_digitada"
+        Me.Text = "PRIMER DIGITADA                               "
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -398,14 +395,12 @@ Partial Class personal
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents btnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnbuscar As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents dgvData As System.Windows.Forms.DataGridView
     Friend WithEvents Lbl1 As System.Windows.Forms.Label
     Friend WithEvents txtnombre1 As System.Windows.Forms.TextBox
     Friend WithEvents txtape1 As System.Windows.Forms.TextBox
     Friend WithEvents txtjrv As System.Windows.Forms.TextBox
     Friend WithEvents cmbcargo As System.Windows.Forms.ComboBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents btningresar As System.Windows.Forms.Button
     Friend WithEvents cbProcedencia As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -420,4 +415,6 @@ Partial Class personal
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents btn_aceptar_jrv As System.Windows.Forms.Button
+    Friend WithEvents cb_inconsistencias As System.Windows.Forms.ComboBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 End Class

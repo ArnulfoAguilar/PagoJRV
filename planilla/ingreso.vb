@@ -13,15 +13,12 @@ Public Class ingreso
         'usuarios.Show()
         Me.Close()
     End Sub
-
-
-    Private Sub btnaceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnaceptar.Click
-
+    Private Sub eventoConsultar()
 
         Try
             ' Dim sql As String = "select * from usuario where nom_usuario=:nombre and password=:password" ' Esta es la consulta a la base
             'Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-            Dim sql As String = "select * from usuario where nom_usuario=:NOMBRE and password=:password"
+            Dim sql As String = "select * from usuario where nombre=:NOMBRE and password=:password"
             Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
             comando.Parameters.Add(":NOMBRE", txtusuario.Text.ToUpper)
             comando.Parameters.Add(":password", txtclave.Text.ToUpper)
@@ -38,11 +35,9 @@ Public Class ingreso
                     codUsuario = a
                     nomUsuario = usu
                 End If
-                'MessageBox.Show("TODO BIEN")
-                ' MessageBox.Show("Ha ingresado al sistema")
                 con.Close()
 
-                menuprin.Show()
+                MenuPrincipal.Show()
                 Me.Close()
             Else
                 MessageBox.Show("CONTRASEÑA O USUARIO INCORRECTO")
@@ -62,12 +57,12 @@ Public Class ingreso
 
     End Sub
 
-    Private Sub btnsalida_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnsalida.Click
-        Me.Close()
+    Private Sub btnaceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnaceptar.Click
+        eventoConsultar()
     End Sub
 
-    Private Sub ingreso_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+    Private Sub btnsalida_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnsalida.Click
+        Me.Close()
     End Sub
 
     Private Sub txtusuario_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtusuario.KeyDown
@@ -78,49 +73,8 @@ Public Class ingreso
 
     Private Sub txtclave_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtclave.KeyDown
         If e.KeyData = Keys.Enter Then
-
-            Try
-                ' Dim sql As String = "select * from usuario where nom_usuario=:nombre and password=:password" ' Esta es la consulta a la base
-                'Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-                Dim sql As String = "select * from usuario where nom_usuario=:NOMBRE and password=:password"
-                Dim comando As New OracleCommand(sql, con) ' SE crea un nuevo comando de oracle y se le asigna la consulta a la base (sql) y la conexion(con)
-                comando.Parameters.Add(":NOMBRE", txtusuario.Text.ToUpper)
-                comando.Parameters.Add(":password", txtclave.Text.ToUpper)
-
-
-                con.Open()
-                Dim lector As OracleDataReader = Nothing
-
-                lector = comando.ExecuteReader
-                If lector.HasRows Then
-                    If lector.Read() Then
-                        Dim a As Integer = Convert.ToInt32(lector(0).ToString)
-                        Dim usu As String = lector(1).ToString()
-                        codUsuario = a
-                        nomUsuario = usu
-                    End If
-                    'MessageBox.Show("TODO BIEN")
-                    ' MessageBox.Show("Ha ingresado al sistema")
-                    con.Close()
-
-
-                    menuprin.Show()
-                    Me.Close()
-                Else
-                    MessageBox.Show("CONTRASEÑA O USUARIO INCORRECTO")
-                    txtusuario.Text = ""
-                    txtclave.Text = ""
-                    txtusuario.Focus()
-                    con.Close()
-
-
-                End If
-
-            Catch ex As Exception
-                MessageBox.Show(ex.ToString) ' Se imprime el error por si falla la conexion a la base
-                con.Close()
-
-            End Try
+            eventoConsultar()
         End If
     End Sub
+
 End Class

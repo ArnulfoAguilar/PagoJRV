@@ -29,8 +29,6 @@ Partial Class ingreso
         Me.txtclave = New System.Windows.Forms.TextBox()
         Me.btnaceptar = New System.Windows.Forms.Button()
         Me.btnsalida = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LBLTITULO
@@ -105,16 +103,6 @@ Partial Class ingreso
         Me.btnsalida.Text = "Salir Sistema"
         Me.btnsalida.UseVisualStyleBackColor = True
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.planilla.My.Resources.Resources.LOGO_TSE
-        Me.PictureBox1.Location = New System.Drawing.Point(23, 12)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(139, 68)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
         'ingreso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -127,15 +115,12 @@ Partial Class ingreso
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.LBLTITULO)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Name = "ingreso"
         Me.Text = "Ingeso Sistema"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents LBLTITULO As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label

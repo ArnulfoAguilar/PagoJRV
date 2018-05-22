@@ -52,7 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="system.data.oracleclient">
-      <HintPath>..\..\..\..\..\Downloads\__32-system.data.oracleclient.dll1.1.4322.2312\system.data.oracleclient.dll</HintPath>
+      <HintPath>bin\Debug\system.data.oracleclient.dll</HintPath>
     </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -82,10 +82,10 @@
       <DependentUpon>ingreso.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuprin.Designer.vb">
-      <DependentUpon>menuprin.vb</DependentUpon>
+    <Compile Include="MenuPrincipal.Designer.vb">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </Compile>
-    <Compile Include="menuprin.vb">
+    <Compile Include="MenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -103,10 +103,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="personal.Designer.vb">
-      <DependentUpon>personal.vb</DependentUpon>
+    <Compile Include="Primera_digitada.Designer.vb">
+      <DependentUpon>Primera_digitada.vb</DependentUpon>
     </Compile>
-    <Compile Include="personal.vb">
+    <Compile Include="Primera_digitada.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TablaTemp.vb" />
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="ingreso.resx">
       <DependentUpon>ingreso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuprin.resx">
-      <DependentUpon>menuprin.vb</DependentUpon>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -131,8 +131,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="personal.resx">
-      <DependentUpon>personal.vb</DependentUpon>
+    <EmbeddedResource Include="Primera_digitada.resx">
+      <DependentUpon>Primera_digitada.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="usuarios.resx">
       <DependentUpon>usuarios.vb</DependentUpon>
@@ -169,6 +169,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ESCUDO.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controladores\" />
+    <Folder Include="Resources\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
