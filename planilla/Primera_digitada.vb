@@ -287,8 +287,6 @@ Public Class Primera_digitada
             con.Close()
         Else
             con.Close()
-
-
             MessageBox.Show("LA JRV YA FUE DIGITADA 1 vez")
             Exit Sub
             
@@ -909,7 +907,7 @@ Public Class Primera_digitada
                 con.Close()
 
                 'Aqui Agregare la funcion para que mande la imagen siempre y cuando el estado sea menor que 3
-                Dim sqlmenor As String = "select IMAGEN_DIPUTADO from IMAGEN where JRV=:ID and ID_ESTADO_DIGITADA < 3"
+                Dim sqlmenor As String = "select IMAGEN_DIPUTADO from IMAGEN where JRV=:ID and ID_ESTADO_DIGITADA < 1"
                 Dim comandomenor As New OracleCommand(sqlmenor, con)
                 comandomenor.Parameters.Add(":ID", OracleType.VarChar, 30).Value = txtjrv.Text
                 Dim lectormenor As OracleDataReader = Nothing
@@ -921,12 +919,18 @@ Public Class Primera_digitada
                     Dim extraer As Byte() = ExtraerImagen(txtjrv.Text, "select IMAGEN_DIPUTADO from IMAGEN where JRV=:ID")
                     Dim ms As New MemoryStream(extraer)
                     LOGO.Image = Image.FromStream(ms)
+                    txtjrv.Enabled = False
+                    txtdui.Enabled = True
+                    txtdui.Focus()
+                    btnbuscar.Enabled = True
                 Else
                     'siguiente_acta() ' Primero se pide el valor de la siguiente
                     'txtjrv.Text = nextval
                     'mostrar_asamblea()
 
-                    MessageBox.Show("Esta acta ya se digito 2 veces, por favor digite la siguiente")
+                    MessageBox.Show("Esta acta ya se digito 1 veces, por favor digite la siguiente")
+                    txtjrv.Text = ""
+                    txtjrv.Focus()
 
                 End If
 
@@ -1093,10 +1097,6 @@ Public Class Primera_digitada
     Private Sub verificar_jrv_ingresada()
         If txtjrv.Text < 9422 And txtjrv.Text > 0 Then
             mostrar_asamblea()
-            txtjrv.Enabled = False
-            txtdui.Enabled = True
-            txtdui.Focus()
-            btnbuscar.Enabled = True
         Else
             MessageBox.Show("Digite una JRV en el rango de 1-9422")
             txtjrv.Text = ""
@@ -1109,4 +1109,5 @@ Public Class Primera_digitada
             e.Handled = True
         End If
     End Sub
+
 End Class

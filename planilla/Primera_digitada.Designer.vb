@@ -135,12 +135,12 @@ Partial Class Primera_digitada
         '
         Me.dgvData.AllowUserToAddRows = False
         Me.dgvData.AllowUserToDeleteRows = False
-        Me.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
+        Me.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvData.Location = New System.Drawing.Point(12, 254)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(687, 239)
+        Me.dgvData.Size = New System.Drawing.Size(727, 239)
         Me.dgvData.TabIndex = 26
         '
         'Lbl1
@@ -253,7 +253,7 @@ Partial Class Primera_digitada
         '
         Me.Panel1.AutoScroll = True
         Me.Panel1.Controls.Add(Me.LOGO)
-        Me.Panel1.Location = New System.Drawing.Point(705, 178)
+        Me.Panel1.Location = New System.Drawing.Point(761, 176)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(505, 327)
         Me.Panel1.TabIndex = 50
@@ -262,7 +262,7 @@ Partial Class Primera_digitada
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(785, 522)
+        Me.Button1.Location = New System.Drawing.Point(841, 516)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(68, 57)
         Me.Button1.TabIndex = 51
@@ -272,7 +272,7 @@ Partial Class Primera_digitada
         '
         Me.Button6.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
-        Me.Button6.Location = New System.Drawing.Point(1076, 522)
+        Me.Button6.Location = New System.Drawing.Point(1155, 518)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(68, 57)
         Me.Button6.TabIndex = 52
@@ -280,7 +280,7 @@ Partial Class Primera_digitada
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(882, 533)
+        Me.Button7.Location = New System.Drawing.Point(945, 524)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(188, 40)
         Me.Button7.TabIndex = 53
@@ -301,7 +301,7 @@ Partial Class Primera_digitada
         '
         Me.Button3.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(864, 109)
+        Me.Button3.Location = New System.Drawing.Point(945, 105)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(58, 60)
         Me.Button3.TabIndex = 56
@@ -311,7 +311,7 @@ Partial Class Primera_digitada
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(996, 107)
+        Me.Button4.Location = New System.Drawing.Point(1077, 106)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(56, 62)
         Me.Button4.TabIndex = 57
@@ -348,7 +348,7 @@ Partial Class Primera_digitada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1221, 624)
+        Me.ClientSize = New System.Drawing.Size(1300, 646)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.cb_inconsistencias)
         Me.Controls.Add(Me.btn_aceptar_jrv)
